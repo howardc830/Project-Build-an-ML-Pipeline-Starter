@@ -51,7 +51,7 @@ def go(config: DictConfig):
                 env_manager="conda",
                 parameters={
                     "sample": config["etl"]["sample"],
-                    "artifact_name": "sample.csv",
+                    "artifact_name": "clean_sample.csv",
                     "artifact_type": "raw_data",
                     "artifact_description": "Raw file as downloaded"
                 },
