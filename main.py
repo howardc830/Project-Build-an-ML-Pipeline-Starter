@@ -35,7 +35,7 @@ def go(config: DictConfig):
     raw_artifact_name = f"{config['etl']['sample']}:latest"
     if any(step in active_steps for step in ["basic_cleaning", "data_check", "data_split", "train_random_forest", "test_regression_model"]):
         try:
-            wandb.Api().artifacts(f"(os.environ['WANDB_PROJECT']}/{raw_artifact_name}")
+            wandb.Api().artifacts(f"{os.environ['WANDB_PROJECT']}/{raw_artifact_name}")
         except wandb.errors.CommError:
             print(f"raw data {raw_artifact_name} not found. Running 'download' step automatically.")
             active_steps = ["download"] + [s for s in active_steps if s != "download"]
