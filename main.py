@@ -52,12 +52,12 @@ def go(config: DictConfig):
 
         if "basic_cleaning" in active_steps:
             _ = mlflow.run(
-                "https://github.com/udacity/Project-Build-an-ML-Pipeline-Starter.git#src/basic_cleaning",
+                f"{config['main']['components_repository']}/basic_cleaning",
                 entry_point="main",
                 version="main",
                 env_manager="conda",
                 parameters={
-                    "input_artifact": "sample_csv:latest",
+                    "input_artifact": config["etl"]["sample"],
                     "output_artifact": "clean_sample.csv",
                     "output_type": "clean_sample",
                     "output_description": "Data cleaned by removing outliers and invalid entries",
