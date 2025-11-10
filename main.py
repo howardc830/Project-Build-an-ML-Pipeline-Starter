@@ -38,7 +38,7 @@ def go(config: DictConfig):
         if "download" in active_steps:
             # Download file and load in W&B
             _ = mlflow.run(
-                uri="components/get_data",
+                uri="./components/get_data",
                 entry_point="main",
                 env_manager="conda",
                 parameters={
@@ -52,7 +52,7 @@ def go(config: DictConfig):
         if "basic_cleaning" in active_steps:
             print("Running basic cleaning step...")
             _ = mlflow.run(
-                uri="src/basic_cleaning",
+                uri="./src/basic_cleaning",
                 entry_point="main",
                 env_manager="conda",
                 parameters={
