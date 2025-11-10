@@ -49,7 +49,6 @@ def go(config: DictConfig):
                # uri="./components/get_data",
                 f"{config['main']['components_repository']}/components/get_data",
                 entry_point="main",
-                version="main",
                 env_manager="conda",
                 parameters={
                     "sample": config["etl"]["sample"],
@@ -64,7 +63,6 @@ def go(config: DictConfig):
             _ = mlflow.run(
                 uri="./src/basic_cleaning",
                 entry_point="main",
-                version="main",
                 env_manager="conda",
                 parameters={
                     "input_artifact": "sample.csv:latest",
@@ -80,7 +78,6 @@ def go(config: DictConfig):
             _ = mlflow.run(
                 f"{config['main']['components_repository']}/src/data_check",
                 entry_point="main",
-                version="main",
                 env_manager="conda",
                 parameters={
                     "sample_artifact": "clean_sample.csv:latest",
