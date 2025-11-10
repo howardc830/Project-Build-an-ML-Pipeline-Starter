@@ -51,35 +51,35 @@ def go(config: DictConfig):
             )
 
         if "basic_cleaning" in active_steps:
-           _ = mlflow.run(
-               f"{config['main']['components_repository']}/basic_cleaning",
-               "main",
-               version="main",
-               env_manager="conda",
-               parameters={
-                   "input_artifact": "sample_csv:latest",
-                   "output_artifact": "clean_sample.csv",
-                   "output_type": "clean_sample",
-                   "output_description": "Data cleaned by removing outliers and invalid entries",
-                   "min_price": config["etl"]["min_price"],
-                   "max_price": config["etl"]["max_price"],
-           },
-        )
+            _ = mlflow.run(
+                f"{config['main']['components_repository']}/basic_cleaning",
+                entry_point="main",
+                version="main",
+                env_manager="conda",
+                parameters={
+                    "input_artifact": "sample_csv:latest",
+                    "output_artifact": "clean_sample.csv",
+                    "output_type": "clean_sample",
+                    "output_description": "Data cleaned by removing outliers and invalid entries",
+                    "min_price": config["etl"]["min_price"],
+                    "max_price": config["etl"]["max_price"],
+                },
+            )
 
         if "data_check" in active_steps:
-           _ = mlflow.run(
-               f"{config['main']['components_repository']}/data_check",
-               "main",
-               version="main",
-               env_manager="conda",
-               parameters={
-                   "sample_artifact": "clean_sample.csv:latest",
-                   "reference_artifact": "clean_sample.csv:reference",
-                   "kl_threshold": config["data_check"]["k1_threshold"],
-                   "min_price": config["etl"]["min_price"],
-                   "max_price": config["etl"]["max_price"],
-               },
-           )
+            _ = mlflow.run(
+                f"{config['main']['components_repository']}/data_check",
+                entry_point="main",
+                version="main",
+                env_manager="conda",
+                parameters={
+                    "sample_artifact": "clean_sample.csv:latest",
+                    "reference_artifact": "clean_sample.csv:reference",
+                    "kl_threshold": config["data_check"]["k1_threshold"],
+                    "min_price": config["etl"]["min_price"],
+                    "max_price": config["etl"]["max_price"],
+                },
+            )
 
         if "data_split" in active_steps:
             ##################
