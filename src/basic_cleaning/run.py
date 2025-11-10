@@ -61,7 +61,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--output_artifact", 
         type = str
-        help = "Output artifact for cleaned data
+        help = "Output artifact for cleaned data"
         required = True
     )
 
