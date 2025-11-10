@@ -55,7 +55,7 @@ def go(config: DictConfig):
                f"{config['main']['components_repository']}/basic_cleaning",
                "main",
                version="main",
-               env_manager="conda"
+               env_manager="conda",
                parameters={
                    "input_artifact": "sample_csv:latest",
                    "output_artifact": "clean_sample.csv",
@@ -80,7 +80,6 @@ def go(config: DictConfig):
                    "max_price": config["etl"]["max_price"],
                },
            )
-            pass
 
         if "data_split" in active_steps:
             ##################
