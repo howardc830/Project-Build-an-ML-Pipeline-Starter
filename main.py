@@ -56,7 +56,7 @@ def go(config: DictConfig):
                 entry_point="main",
                 env_manager="conda",
                 parameters={
-                    "input_artifact": config["etl"]["sample"],
+                    "input_artifact": f"{config["etl"]["sample"]}:latest",
                     "output_artifact": "clean_sample.csv",
                     "output_type": "clean_sample",
                     "output_description": "Data cleaned by removing outliers and invalid entries",
