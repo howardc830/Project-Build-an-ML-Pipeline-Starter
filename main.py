@@ -76,7 +76,7 @@ def go(config: DictConfig):
 
         if "data_check" in active_steps:
             _ = mlflow.run(
-                f"{config['main']['components_repository']}/src/data_check",
+                uri="./src/data_check",
                 entry_point="main",
                 env_manager="conda",
                 parameters={
