@@ -120,7 +120,7 @@ def go(config: DictConfig):
                     "random_seed": 42,
                     "stratify_by": "neighbourhood_group",
                     "rf_config": rf_config,
-                    "max_tlidf_features": 5,
+                    "max_tfidf_features": 5,
                     "output_artifact": "random_forest_model",
 
                 },
