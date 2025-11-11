@@ -61,8 +61,8 @@ def go(config: DictConfig):
         if "basic_cleaning" in active_steps:
             print("Running basic cleaning step...")
             _ = mlflow.run(
-                uri="./src/basic_cleaning",
-                'main',
+                "./src/basic_cleaning",
+                "main",
                 env_manager="conda",
                 parameters={
                     "input_artifact": "sample.csv:latest",
@@ -76,8 +76,8 @@ def go(config: DictConfig):
 
         if "data_check" in active_steps:
             _ = mlflow.run(
-                uri="./src/data_check",
-                'main',
+                "./src/data_check",
+                "main",
                 env_manager="conda",
                 parameters={
                     "csv": "clean_sample.csv:latest",
@@ -91,7 +91,7 @@ def go(config: DictConfig):
         if "data_split" in active_steps:
             _ = mlflow.run(
                 f"{config['main']['components_repository']}/train_val_test_split",
-                'main',
+                "main",
                 parameters = {
                     "input": "clean_sample.csv:latest",
                     "test_size": 0.2,
