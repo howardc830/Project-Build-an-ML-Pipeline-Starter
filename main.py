@@ -69,8 +69,8 @@ def go(config: DictConfig):
                     "output_artifact": "clean_sample.csv",
                     "output_type": "clean_sample",
                     "output_description": "Data cleaned by removing outliers and invalid entries",
-                    "min_price": config["etl"]["min_price"],
-                    "max_price": config["etl"]["max_price"],
+                    "min_price": 10,
+                    "max_price": 350,
                 },
             )
 
@@ -82,9 +82,9 @@ def go(config: DictConfig):
                 parameters={
                     "csv": "clean_sample.csv:latest",
                     "ref": "clean_sample.csv:reference",
-                    "kl_threshold": config["data_check"]["kl_threshold"],
-                    "min_price": config["etl"]["min_price"],
-                    "max_price": config["etl"]["max_price"],
+                    "kl_threshold": 0.2,
+                    "min_price": 10,
+                    "max_price": 350,
                 },
             )
 
@@ -94,9 +94,9 @@ def go(config: DictConfig):
                 'main',
                 parameters = {
                     "input": "clean_sample.csv:latest",
-                    "test_size": config["modeling"]["test_size"],
-                    "random_seed": config["modeling"]["random_seed"],
-                    "stratify_by": config["modeling"]{"stratify_by"],
+                    "test_size": 0.2,
+                    "random_seed": 42,
+                    "stratify_by": "neighborhood_group",
                 },
             )
            
