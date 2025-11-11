@@ -110,10 +110,21 @@ def go(config: DictConfig):
 
             # NOTE: use the rf_config we just created as the rf_config parameter for the train_random_forest
             # step
+            _ = mlflow.run(
+                "./src/train_random_forest",
+                "main",
+                env_manager="conda",
+                parameters={
+                    "trainval_artifact": "trainval_data.csv:latest",
+                    "val_size": 0.2,
+                    "random_seed": 42,
+                    "stratify_by": "neighbourhood_group",
+                    "rf_config": rf_config,
+                    "max_tlidf_features": 5,
+                    "output_artifact": "random_forest_model",
 
-            ##################
-            # Implement here #
-            ##################
+                },
+            )
 
             pass
 
