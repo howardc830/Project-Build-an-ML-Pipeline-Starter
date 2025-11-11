@@ -96,7 +96,7 @@ def go(config: DictConfig):
                     "input": "clean_sample.csv:latest",
                     "test_size": 0.2,
                     "random_seed": 42,
-                    "stratify_by": "neighborhood_group",
+                    "stratify_by": "neighbourhood_group",
                 },
             )
            
