@@ -232,7 +232,7 @@ def get_inference_pipeline(rf_config, max_tfidf_features):
     sk_pipe = Pipeline(
         steps =[
         # YOUR CODE HERE
-            ("preprocessor", ColumnTransformer()),
+            ("preprocessor", preprocessor),
             ("random_forest", random_forest)
         ]
     )
