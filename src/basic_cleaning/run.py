@@ -47,6 +47,9 @@ def go(args):
 
 # TODO: In the code below, fill in the data type for each argumemt. The data type should be str, float or int. 
 # TODO: In the code below, fill in a description for each argument. The description should be a string.
+idx = df['longitude'].between(-74.25, -73.50) & df['latitude'].between(40.5, 41.2)
+df = df[idx].copy()
+
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="A very basic data cleaning")
