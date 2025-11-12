@@ -121,7 +121,7 @@ def go(config: DictConfig):
                     "stratify_by": "neighbourhood_group",
                     "rf_config": rf_config,
                     "max_tfidf_features": 5,
-                    "output_artifact": "random_forest_model",
+                    "output_artifact": "random_forest_export",
 
                 },
             )
