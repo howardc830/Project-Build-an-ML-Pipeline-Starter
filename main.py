@@ -32,13 +32,6 @@ def go(config: DictConfig):
     steps_par = config['main']['steps']
     active_steps = steps_par.split(",") if steps_par != "all" else _steps
 
-    #raw_artifact_name = f"{config['etl']['sample']}:latest"
-    #if any(step in active_steps for step in ["basic_cleaning", "data_check", "data_split", "train_random_forest", "test_regression_model"]):
-       # try:
-        #    wandb.Api().artifacts(f"{os.environ['WANDB_PROJECT']}/{raw_artifact_name}")
-        #except wandb.errors.CommError:
-         #   print(f"raw data {raw_artifact_name} not found. Running 'download' step automatically.")
-          #  active_steps = ["download"] + [s for s in active_steps if s != "download"]
 
     # Move to a temporary directory
     with tempfile.TemporaryDirectory() as tmp_dir:
@@ -46,7 +39,6 @@ def go(config: DictConfig):
         if "download" in active_steps:
             # Download file and load in W&B
             _ = mlflow.run(
-               # uri="./components/get_data",
                 f"{config['main']['components_repository']}/get_data",
                 'main',
                 env_manager="conda",
@@ -129,7 +121,7 @@ def go(config: DictConfig):
         if "test_regression_model" in active_steps:
 
             _ = mlflow.run(
-                f"{config['main']['components_repository']}/test_regression_model",
+                "components/test_regression_model",
                 "main",
                 env_manager="conda",
                 parameters={
